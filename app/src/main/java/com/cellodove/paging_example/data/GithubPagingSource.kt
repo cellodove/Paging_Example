@@ -38,9 +38,9 @@ class GithubPagingSource(
 
 
     override fun getRefreshKey(state: PagingState<Int, Repo>): Int? {
-        TODO("Not yet implemented")
+        return state.anchorPosition?.let { anchorPosition ->
+            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
+        }
     }
-
-
-
 }
