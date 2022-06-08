@@ -17,13 +17,8 @@ class SearchRepositoriesViewModel(
     var pagingDataFlow: Flow<PagingData<Repo>>
 
     init {
-        pagingDataFlow = initSearchRepo(queryString = "android")
+        pagingDataFlow = searchRepo(queryString = "android")
     }
 
-    private fun initSearchRepo(queryString: String): Flow<PagingData<Repo>> = repository.getSearchResultStream(queryString)
-
-    fun searchRepo(queryString: String) {
-        pagingDataFlow = repository.getSearchResultStream(queryString)
-    }
-
+    private fun searchRepo(queryString: String): Flow<PagingData<Repo>> = repository.getSearchResultStream(queryString)
 }
